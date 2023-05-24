@@ -1,0 +1,14 @@
+//se utiliza para hacer pruebas a la api (rest client)
+
+###
+GET http://localhost:5000/api HTTP/1.1
+
+
+###
+POST http://localhost:5000/api HTTP/1.1
+Content-Type: application/json
+
+{
+    "sugerencia_aprendiz": "lola"
+    
+}

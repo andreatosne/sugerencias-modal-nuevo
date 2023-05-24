@@ -1,11 +1,11 @@
-const express = require('express')
+const express = require ('express')
 const app = express()
 const mysql = require('mysql')
 const myconn = require('express-myconnection')
+const cors = require('cors')
+const routes = require('./routes')
 
-
-
-app.set('port', process.env.PORT || 4000)
+app.set('port', process.env.PORT || 5000)
 const dbOptions = {
     host: 'localhost',
     port: 3306,
@@ -18,13 +18,18 @@ const dbOptions = {
 
 // middlewares -------------------------------------
 app.use(myconn(mysql, dbOptions, 'single'))
-app.use(express.json())
 
+//logra entender los datos en json
+app.use(express.json()),
+app.use(cors());
 
 
 // routes -------------------------------------------
 app.get('/', (req, res)=>{
     res.send('Welcome to my API')})
+
+
+    app.use('/api', routes)//15:25 min
 
     
 // server running -----------------------------------
