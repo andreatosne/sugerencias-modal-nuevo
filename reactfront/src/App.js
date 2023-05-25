@@ -1,45 +1,47 @@
-import React, {Fragment, useState, useEffect} from 'react';
-import Navbar from './components/Navbar'
-import BookList from './components/BookList'
-import Form from './components/Form'
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
+
+
+
+import MuestraTodo from './components/Modal'
 
 function App() {
 
-  const [book, setBook] = useState({
-    sugerencia_aprendiz: '',
+  // const [book, setBook] = useState({
+  //   sugerencia_aprendiz: '',
   
-  })
+  // })
 
-  const [books, setBooks] = useState([])
+  // const [books, setBooks] = useState([])
 
-  const [listUpdated, setListUpdated] = useState(false)
+  // const [listUpdated, setListUpdated] = useState(false)
 
-  useEffect(() => {
-    const getBooks = () => {
-      fetch('http://localhost:5000/api')
-      .then(res => res.json())
-      .then(res => setBooks(res))
-    }
-    getBooks()
-    setListUpdated(false)
-  }, [listUpdated])
+  // useEffect(() => {
+  //   const getBooks = () => {
+  //     fetch('http://localhost:5000/api')
+  //     .then(res => res.json())
+  //     .then(res => setBooks(res))
+  //   }
+  //   getBooks()
+  //   setListUpdated(false)
+  // }, [listUpdated])
 
   return (
-    <Fragment>
-      <Navbar brand='Library App'/>
-      <div className="container">
-        <div className="row">
-          <div className="col-7">
-            <h2 style={{textAlign: 'center'}}>Book List</h2>
-            <BookList book={book} setBook={setBook} books={books} setListUpdated={setListUpdated}/>
-          </div>
-          <div className="col-5">
-            <h2 style={{textAlign: 'center'}}>Book Form</h2>
-            <Form book={book} setBook={setBook}/>
-          </div>
-        </div>
-      </div>
-    </Fragment>
+ 
+    <div className="App">
+      {/* <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+      </header> */}
+      <BrowserRouter>
+      <Routes>
+      
+        <Route path='/sugerencia'element={<MuestraTodo />}/>
+      </Routes>
+      </BrowserRouter>
+
+
+    </div>
+    
   );
 }
 
